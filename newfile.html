@@ -100,6 +100,35 @@
         .petal:nth-child(3) { top: -15px; left: 0px; }
         .petal:nth-child(4) { top: 15px; left: -10px; }
         .petal:nth-child(5) { top: 15px; left: 10px; }
+
+        .video-container {
+    width: 80%;
+    max-width: 600px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.5s ease-out forwards;
+}
+
+.fade-in-video {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
     </style>
 </head>
 <body>
@@ -191,12 +220,56 @@
         }
 
         function drawFlower() {
-            document.getElementById("flower").style.display = "flex";
-            document.getElementById("stem").style.height = "100px";
-            setTimeout(() => {
-                document.querySelectorAll('.petal').forEach(p => p.style.opacity = "1");
-            }, 2000);
-        }
+    document.getElementById("flower").style.display = "flex";
+    document.getElementById("stem").style.height = "100px";
+    setTimeout(() => {
+        document.querySelectorAll('.petal').forEach(p => p.style.opacity = "1");
+    }, 2000);
+
+    // After the flower appears, start typing the new text
+    setTimeout(() => {
+        showPostFlowerMessage();
+    }, 2500);
+}
+
+let postFlowerIndex = 0;
+const postFlowerMessage = "Uh, that doesn't look so good, but I rlly got no time to fix it, you just said u wanna break up and I'm trying to be fast I swear, so just imagine it looks good lmfao.";
+
+function showPostFlowerMessage() {
+    const postFlowerTextElement = document.createElement("p");
+    postFlowerTextElement.classList.add("typing-text");
+    postFlowerTextElement.id = "post-flower-text";
+    document.querySelector(".container").appendChild(postFlowerTextElement);
+    
+    typePostFlowerMessage();
+}
+
+function typePostFlowerMessage() {
+    if (postFlowerIndex < postFlowerMessage.length) {
+        document.getElementById("post-flower-text").innerHTML += postFlowerMessage.charAt(postFlowerIndex);
+        postFlowerIndex++;
+        setTimeout(typePostFlowerMessage, speed);
+    } else {
+        // After the text finishes, show the video after a short delay
+        setTimeout(showVideo, 1500);
+    }
+}
+
+function showVideo() {
+    const videoContainer = document.createElement("div");
+    videoContainer.classList.add("video-container");
+
+    const videoElement = document.createElement("video");
+    videoElement.src = "https://omarawjy.github.io/FuckValentine/Fuckenval.mp4"; // Replace with actual GitHub video URL
+    videoElement.controls = true;
+    videoElement.autoplay = false;
+    videoElement.classList.add("fade-in-video");
+
+    videoContainer.appendChild(videoElement);
+    document.querySelector(".container").appendChild(videoContainer);
+}
+
+
 
         typeText1();
     </script>
