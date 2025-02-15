@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fuck valentine</title>
+    <title>Roses are red...</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
-    background: linear-gradient(135deg, #3a0ca3, #240046, #10002b);
-    background-attachment: fixed; 
-    background-size: cover; 
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh; 
-    width: 100vw;
-    overflow-y: auto; 
-    padding: 20px 0; 
-}
-
-
-        .container { text-align: center; max-width: 600px; position: relative; }
+            background: linear-gradient(135deg, #3a0ca3, #240046, #10002b);
+            background-attachment: fixed;
+            background-size: cover;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+        }
         .typing-text {
             font-size: 1.5em;
             white-space: pre-wrap;
@@ -34,307 +36,25 @@
             animation: blink 0.8s infinite;
         }
         @keyframes blink { 50% { border-color: transparent; } }
-        .buttons {
-            display: flex;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            margin-top: 20px;
-        }
-        .btn {
-            background: linear-gradient(135deg, #ff5f95, #ff96b5);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1.2em;
-            margin: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            border-radius: 25px;
-            font-weight: bold;
-        }
-        .btn:hover { background: linear-gradient(135deg, #ff3d7b, #ff749f); }
-        .btn:active { background: linear-gradient(135deg, #ff1a5e, #ff567d); transform: scale(0.98); }
-        .line {
-            width: 4px; height: 0; background-color: white;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-            position: relative; margin: 20px auto; transition: height 1.5s ease-in-out;
-        }
-        .final-text {
-            font-size: 1.8em; margin-top: 20px; visibility: hidden;
-            white-space: pre-wrap; overflow: hidden;
-        }
-        .flower-container { 
-            display: none; 
-            margin-top: 40px; 
-            position: relative; 
-            height: 120px; 
-            width: 100px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-        }
-        .stem {
-            width: 5px; 
-            height: 0; 
-            background: green;
-            transition: height 2s ease-in-out;
-        }
-        .petals-container {
-            position: absolute;
-            bottom: 100px; 
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-wrap: wrap;
-            width: 60px;
-            height: 60px;
-        }
-        .petal {
-            width: 30px; 
-            height: 30px; 
-            background: red;
-            border-radius: 50%;
-            position: absolute; 
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .petal:nth-child(1) { top: 0px; left: 15px; }
-        .petal:nth-child(2) { top: 0px; left: -15px; }
-        .petal:nth-child(3) { top: -15px; left: 0px; }
-        .petal:nth-child(4) { top: 15px; left: -10px; }
-        .petal:nth-child(5) { top: 15px; left: 10px; }
-
-        .video-container {
-    width: 80%;
-    max-width: 600px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1.5s ease-out forwards;
-}
-
-.fade-in-video {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
     </style>
 </head>
 <body>
     <div class="container">
         <p id="text1" class="typing-text"></p>
-        <p id="text2" class="typing-text"></p>
-        <div class="buttons">
-            <button class="btn" onclick="showFinalMessage('And Inchaallah will be my valentine for lifetime', true)">Yes</button>
-            <button class="btn" onclick="showFinalMessage('Wtf bitch u have no right to chose, you are already, aint no choice', true)">No</button>
-        </div>
-        <div class="line" id="line"></div>
-        <p id="final-text" class="final-text"></p>
-        <p id="funny-text" class="final-text"></p>
-        
-        <div class="flower-container" id="flower">
-            <div class="stem" id="stem"></div>
-            <div class="petals-container">
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-            </div>
-        </div>
     </div>
 
     <script>
-        const text1 = "Roses are red, violets are blue,\nLife is more fun when I'm with you! Happy valentine for you Bilur";
-        const text2 = "Will you be my Valentine?";
-        
-        let index = 0, index2 = 0, finalIndex = 0, funnyIndex = 0;
-        let speed = 80, finalMessage = "", funnyMessage = "";
+        const text1 = "Code available at https://github.com/OmarAwjy/FuckValentine/blob/main/8j8sbf94!2";
+        let index = 0;
+        let speed = 80;
 
         function typeText1() {
             if (index < text1.length) {
                 document.getElementById("text1").innerHTML += text1.charAt(index);
                 index++;
                 setTimeout(typeText1, speed);
-            } else {
-                setTimeout(typeText2, 1000);
             }
         }
-
-        function typeText2() {
-            if (index2 < text2.length) {
-                document.getElementById("text2").innerHTML += text2.charAt(index2);
-                index2++;
-                setTimeout(typeText2, speed);
-            } else {
-                document.querySelector('.buttons').style.opacity = "1";
-            }
-        }
-
-        function showFinalMessage(message, isYes) {
-    document.querySelector('.buttons').style.display = "none";
-    let line = document.getElementById("line");
-    line.style.height = "100px";
-    finalMessage = message;
-    setTimeout(() => {
-        document.getElementById("final-text").style.visibility = "visible";
-        typeFinalMessage();
-        if (isYes) setTimeout(() => showFunnyMessage(), 5500); 
-    }, 1800); 
-}
-
-
-        function typeFinalMessage() {
-            if (finalIndex < finalMessage.length) {
-                document.getElementById("final-text").innerHTML += finalMessage.charAt(finalIndex);
-                finalIndex++;
-                setTimeout(typeFinalMessage, speed);
-            }
-        }
-
-        function showFunnyMessage() {
-            funnyMessage = "Since I can't buy you a real flower, I'll code it. HAHAHA, what a brilliant me! Take it. Happy Valentine, baby.";
-            document.getElementById("funny-text").style.visibility = "visible";
-            typeFunnyMessage();
-        }
-
-        function typeFunnyMessage() {
-            if (funnyIndex < funnyMessage.length) {
-                document.getElementById("funny-text").innerHTML += funnyMessage.charAt(funnyIndex);
-                funnyIndex++;
-                setTimeout(typeFunnyMessage, speed);
-            } else {
-                setTimeout(drawFlower, 1500);
-            }
-        }
-
-        function drawFlower() {
-    document.getElementById("flower").style.display = "flex";
-    document.getElementById("stem").style.height = "100px";
-    setTimeout(() => {
-        document.querySelectorAll('.petal').forEach(p => p.style.opacity = "1");
-    }, 2000);
-
-    
-    setTimeout(() => {
-        showPostFlowerMessage();
-    }, 2500);
-}
-
-let postFlowerIndex = 0;
-const postFlowerMessage = "Uh, that doesn't look so good, but I rlly got no time to fix it, you just said u wanna break up and I'm trying to be fast I swear, so just imagine it looks good lmfao.";
-
-function showPostFlowerMessage() {
-    const postFlowerTextElement = document.createElement("p");
-    postFlowerTextElement.classList.add("typing-text");
-    postFlowerTextElement.id = "post-flower-text";
-    document.querySelector(".container").appendChild(postFlowerTextElement);
-    
-    typePostFlowerMessage();
-}
-
-function scrollToBottom() {
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth"
-    });
-}
-
-function typePostFlowerMessage() {
-    if (postFlowerIndex < postFlowerMessage.length) {
-        document.getElementById("post-flower-text").innerHTML += postFlowerMessage.charAt(postFlowerIndex);
-        postFlowerIndex++;
-        setTimeout(typePostFlowerMessage, speed);
-        scrollToBottom(); 
-    } else {
-        setTimeout(() => {
-            showVideo();
-            scrollToBottom(); 
-        }, 1000);
-    }
-}
-
-function showVideo() {
-    const videoContainer = document.createElement("div");
-    videoContainer.classList.add("video-container");
-
-    const videoElement = document.createElement("video");
-    videoElement.src = "https://omarawjy.github.io/FuckValentine/Fuckenval.mp4"; 
-    videoElement.controls = true;
-    videoElement.autoplay = false;
-    videoElement.classList.add("fade-in-video");
-
-    videoContainer.appendChild(videoElement);
-    document.querySelector(".container").appendChild(videoContainer);
-
-    setTimeout(scrollToBottom, 500); 
-
-    
-    videoElement.onended = function () {
-        setTimeout(showApologyText, 1000); 
-    };
-}
-
-let apologyIndex = 0, loveIndex = 0;
-const apologyMessage = "Sorry for that shit.";
-const loveMessage = "I love you.";
-
-function showApologyText() {
-    const apologyTextElement = document.createElement("p");
-    apologyTextElement.classList.add("typing-text");
-    apologyTextElement.id = "apology-text";
-    document.querySelector(".container").appendChild(apologyTextElement);
-
-    typeApologyText();
-}
-
-function typeApologyText() {
-    if (apologyIndex < apologyMessage.length) {
-        document.getElementById("apology-text").innerHTML += apologyMessage.charAt(apologyIndex);
-        apologyIndex++;
-        setTimeout(typeApologyText, speed);
-        scrollToBottom();
-    } else {
-        setTimeout(showLoveText, 1000); 
-    }
-}
-
-function showLoveText() {
-    const loveTextElement = document.createElement("p");
-    loveTextElement.classList.add("typing-text");
-    loveTextElement.id = "love-text";
-    document.querySelector(".container").appendChild(loveTextElement);
-
-    typeLoveText();
-}
-
-function typeLoveText() {
-    if (loveIndex < loveMessage.length) {
-        document.getElementById("love-text").innerHTML += loveMessage.charAt(loveIndex);
-        loveIndex++;
-        setTimeout(typeLoveText, speed);
-        scrollToBottom();
-    }
-}
-
-
-
 
         typeText1();
     </script>
