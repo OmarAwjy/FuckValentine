@@ -36,6 +36,15 @@
             animation: blink 0.8s infinite;
         }
         @keyframes blink { 50% { border-color: transparent; } }
+        a {
+            color: #ff96b5;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #ff5f95;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +53,10 @@
     </div>
 
     <script>
-        const text1 = "Code available at https://github.com/OmarAwjy/FuckValentine/blob/code/92348hd!.html";
+        const text1 = "Code available at ";
+        const linkText = "GitHub Repository";
+        const linkHref = "https://github.com/OmarAwjy/FuckValentine/blob/code/92348hd!.html";
+
         let index = 0;
         let speed = 80;
 
@@ -53,6 +65,14 @@
                 document.getElementById("text1").innerHTML += text1.charAt(index);
                 index++;
                 setTimeout(typeText1, speed);
+            } else {
+                setTimeout(() => {
+                    const link = document.createElement("a");
+                    link.href = linkHref;
+                    link.innerText = linkText;
+                    link.target = "_blank";
+                    document.getElementById("text1").appendChild(link);
+                }, 200);
             }
         }
 
